@@ -12,6 +12,7 @@ I will create more images, but this is the one that will only get the informatio
 to pvoutput. 
 
 #what does this image have
+- its a raspbian wheezy (16-02-2015)
 - its up to date
 - it has php5 installed for the script to run
 - it has the cronjob already configured to be able to run te script
@@ -21,12 +22,13 @@ to pvoutput.
 -- for more detailed information check the author of the script: 
 https://github.com/omoerbeek/e2pv
 
-#Needed before install. 
+#Installation / Configuration
 
 A raspberry pi (or pi2)
 16gb micro sd card
 
 Download the zip file: https://mega.co.nz/#!Q1ci1DLQ!3NCG1X2Og6ms8H9JiMZz6mtHYM2sY2ngf_OWecueMb0
+
 file: enecsys_auto_install_e2pv_16gb_v2.zip   / 2.2 gb
 
 - unzip it (14,8gb) and copy it to your sd card with win32diskmanager or any other tool. (it can take a while).
@@ -38,10 +40,12 @@ http://i.imgur.com/ltiFSpv.jpg
 
 ```
 user: pi
-wachtwoord: raspberry
+password: raspberry
 ```
 
 from there on you're in the right directory. 
+
+#run script staticip
 
 configure your network settings. set the rpi to a static ipaddress (run with sudo!!). this script will write the changes to your primary network interface, so be sure that they are right ;).
 
@@ -53,6 +57,9 @@ needed:
 ```
 sudo ./staticip.sh
 ```
+example: http://i.imgur.com/Mm6Skez.jpg?1
+
+#run script e2pv_install_update
 
 2nd script is the download, installation and configuration of omoerbeek his script to read the enecsys gateway and output the data to pvoutput. this script will only use the basic settings. for more advanced stuff check his github page. 
 
@@ -77,6 +84,6 @@ sudo reboot
 ```
 
 #enecsys gateway change
-change the ipadress to your freshly installed rpi ipaddress and you should see data coming to pvoutput. give it about 10 -20 minutes. (need light of course 0; )
+change the ipadress to your freshly installed rpi ipaddress and you should see data coming to your pvoutput account. give it about 10 -20 minutes. (need light of course 0; )
 
 http://i.imgur.com/ubp9LMs.jpg
