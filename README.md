@@ -34,7 +34,7 @@ file: enecsys_auto_install_e2pv_16gb_v2.zip   / 2.2 gb
 - track your rpi over the network to find its ip address (i used Fing (available for Apple/Android)
 
 login through putty (change the ip address with the one you scanned on your network
-[img]http://i.imgur.com/ltiFSpv.jpg[/img]
+http://i.imgur.com/ltiFSpv.jpg
 
 ```
 user: pi
@@ -43,7 +43,7 @@ wachtwoord: raspberry
 
 from there on you're in the right directory. 
 
-#configure your network settings. set the rpi to a static ipaddress (run with sudo!!). this script will write the changes to your primary network interface, so be sure that they are right ;).
+configure your network settings. set the rpi to a static ipaddress (run with sudo!!). this script will write the changes to your primary network interface, so be sure that they are right ;).
 
 needed:
 - router ipaddress (gateway)
@@ -68,7 +68,7 @@ run the script: (from /home/pi) as normal pi user
 
 follow the questions and you're all set. 
 
-example: [img]http://i.imgur.com/tGUUcKK.jpg[/img]
+example: http://i.imgur.com/tGUUcKK.jpg
 
 
 reboot the rpi for completing the install
@@ -79,4 +79,4 @@ sudo reboot
 #enecsys gateway change
 change the ipadress to your freshly installed rpi ipaddress and you should see data coming to pvoutput. give it about 10 -20 minutes. (need light of course 0; )
 
-[img]http://i.imgur.com/ubp9LMs.jpg[/img]
+http://i.imgur.com/ubp9LMs.jpg
