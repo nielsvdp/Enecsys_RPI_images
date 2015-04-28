@@ -27,9 +27,8 @@ https://github.com/omoerbeek/e2pv
 A raspberry pi (or pi2)
 16gb micro sd card
 
-Download the zip file: https://mega.co.nz/#!Q1ci1DLQ!3NCG1X2Og6ms8H9JiMZz6mtHYM2sY2ngf_OWecueMb0
+Download the zip file: temporary offline. found a bug in the installer script. need to fix it first
 
-file: enecsys_auto_install_e2pv_16gb_v2.zip   / 2.2 gb
 
 - unzip it (14,8gb) and copy it to your sd card with win32diskmanager or any other tool. (it can take a while).
 - from there on, put the sd in your rpi and start it up.
