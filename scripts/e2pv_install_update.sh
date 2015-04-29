@@ -14,14 +14,20 @@
 ## ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ##
-## version	: 1.0
+## version	: 1.1
 ## date		: april 26 2015
 ## features	: e2pv installation or update. retreive latest files from master branch. create and or backup current config.
 ## cleanup of files after installation
-
 ## run download script for e2pv setup
 ## run from home/pi directory as normal user
 
+## updates: fixed some variables that needed to be ignored when creating the basic config
+
+
+## todo: check if crontab exists. if exists, then skip, else create and echto. 
+## crontab -l | grep -q '/home/pi/enecsys/e2pv.php'  && echo 'entry exists' || echo 'entry does not exist'
+
+###########################################################################
 
 ## date format ##
 NOW=$(date +"%F")
@@ -83,7 +89,7 @@ define('AC', $pvdcac);             // Send DC data or AC (DC * Efficiency)
 
 // If mode is SPLIT, define the Enecsys ID to PVOutput SystemID mapping for each
 // inverter.
-//$systemid = array(
+//  \$systemid = array(
 //  NNNNNNNNN => NNNNNN,
 //  NNNNNNNNN => NNNNNN,
 //  ...
@@ -91,13 +97,13 @@ define('AC', $pvdcac);             // Send DC data or AC (DC * Efficiency)
 
 // If mode is SPLIT, optionally define the Enecsys ID to APIKEY mappings
 // If an id is not found, the default APIKEY from above is used.
-//$apikey = array(
+// \$apikey = array(
 // NNNNNNNNN => 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
 // NNNNNNNNN => 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
 //);
 
 // The following inverter ids are ignored (e.g. the neighbours' ones)
-$ignored = array(
+\$ignored = array(
 // NNNNNNNNN,
 // ...
 );
