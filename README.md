@@ -13,24 +13,34 @@ to pvoutput.
 
 #what does this image have
 - its a raspbian wheezy (16-02-2015)
-- its up to date
+- its up to date and upgraded
+- gpu memory is set to 16MB
+- overclocked to 800Mhz (no heatsink needed)
 - it has php5 installed for the script to run
-- it has the cronjob already configured to be able to run te script
-- it has a script installed to be able to easy configure your network
+- it has the cronjob already configured to be able to run the script
+  @reboot php /home/pi/enecsys/e2pv.php
+- it has a script installed to be able to easy configure your network (staticip.sh)
+  can be downloaded seperate if you already have an image installed
 - it has the e2pv easy install script installed. i only set it up with the basic requirements for pvoutput
+
 
 -- for more detailed information check the author of the script: 
 https://github.com/omoerbeek/e2pv
 
+#Download link:
+https://mega.co.nz/#!ootwiJZB!4cwoCQckZ_u5OzetpweA4QDXkFWynx1GoazDB9vz_uM
+
+unzip it, and write it your microSD card. Downsized the image so it fit on a 8GB card.
+
 #Installation / Configuration
 
-A raspberry pi (or pi2)
-16gb micro sd card
+A raspberry pi B+ 512MB
+8gb micro sd card
 
-Download the zip file: temporary offline. found a bug in the installer script. need to fix it first
+Download the zip file here:
 
 
-- unzip it (14,8gb) and copy it to your sd card with win32diskmanager or any other tool. (it can take a while).
+- unzip it (7.8 GB) and copy it to your sd card with win32diskmanager or any other tool. (it can take a while).
 - from there on, put the sd in your rpi and start it up.
 - track your rpi over the network to find its ip address (i used Fing (available for Apple/Android)
 
@@ -51,7 +61,7 @@ configure your network settings. set the rpi to a static ipaddress (run with sud
 needed:
 - router ipaddress (gateway)
 - subnetmask
-- preferable ipaddress of your rpi (needs to be unused in your network)
+- preferable ipaddress of your rpi (needs to be unused in your network), or the one you are using to connect to the pi.
 
 ```
 sudo ./staticip.sh
@@ -77,12 +87,12 @@ follow the questions and you're all set.
 example: http://i.imgur.com/tGUUcKK.jpg
 
 
-reboot the rpi for completing the install
+reboot the rpi for completing the install and automatic starting the cronjob.
 ```
 sudo reboot
 ```
 
 #enecsys gateway change
-change the ipadress to your freshly installed rpi ipaddress and you should see data coming to your pvoutput account. give it about 10 -20 minutes. (need light of course 0; )
+change the ipadress to your freshly installed rpi ipaddress, leave the port to 5040 and you should see data coming to your pvoutput account. give it about 10 -20 minutes. (need light of course 0; )
 
 http://i.imgur.com/ubp9LMs.jpg
