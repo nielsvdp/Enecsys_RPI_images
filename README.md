@@ -1,7 +1,7 @@
 # Enecsys_RPI_Images
 is based on the need for a Solar Dashboard to monitor on a local server. to monitor the enecsys inverters 
 
-I created a complete image for the raspberry pi. You need at least a 16gb (micro)sd card to be able to deploy the image
+I created a complete image for the raspberry pi. 
 
 Tweakers topic: 
 http://gathering.tweakers.net/forum/list_messages/1627615/0
@@ -23,6 +23,7 @@ to pvoutput.
   can be downloaded seperate if you already have an image installed
 - it has the e2pv easy install script installed. i only set it up with the basic requirements for pvoutput
 
+* It does NOT contain the settings for the apache webserver or mysql settings. You have to manually install apache en mysql for that and reconfigure the /home/pi/enecys/config.php for that.
 
 -- for more detailed information check the author of the script: 
 https://github.com/omoerbeek/e2pv
@@ -37,10 +38,7 @@ unzip it, and write it your microSD card. Downsized the image so it fit on a 8GB
 A raspberry pi B+ 512MB
 8gb micro sd card
 
-Download the zip file here:
-
-
-- unzip it (7.8 GB) and copy it to your sd card with win32diskmanager or any other tool. (it can take a while).
+- unzip it and copy it to your sd card with win32diskmanager or any other tool. (it can take a while).
 - from there on, put the sd in your rpi and start it up.
 - track your rpi over the network to find its ip address (i used Fing (available for Apple/Android)
 
