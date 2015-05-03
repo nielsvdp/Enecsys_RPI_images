@@ -21,7 +21,7 @@
 
 getinfo()
 {
-  read -p "Set your router ip adres (gateway)(example: 192.168.10.1):  " routerip
+  read -p "Set your router gateway ip address (NOT the enecsys gateway)(example: 192.168.10.1):  " routerip
   read -p "Set the netmask: (example: 255.255.255.0):  " netmask
   read -p "Set the ip of your raspberry: (vg: 192.168.10.23):  " staticip
 }

@@ -57,7 +57,7 @@ from there on you're in the right directory.
 configure your network settings. set the rpi to a static ipaddress (run with sudo!!). this script will write the changes to your primary network interface, so be sure that they are right ;).
 
 needed:
-- router ipaddress (gateway)
+- Your router ipaddress (gateway) - NOT the enecsys gateway!
 - subnetmask
 - preferable ipaddress of your rpi (needs to be unused in your network), or the one you are using to connect to the pi.
 
@@ -65,6 +65,8 @@ needed:
 sudo ./staticip.sh
 ```
 example: http://i.imgur.com/Mm6Skez.jpg?1
+
+Reboot the RPI to complete the changes and to check if the changes are correctly set after an reboot.
 
 #run script e2pv_install_update
 
