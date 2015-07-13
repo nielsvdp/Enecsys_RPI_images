@@ -52,6 +52,22 @@ password: raspberry
 
 from there on you're in the right directory. 
 
+#Do you have a RPI 2 ?
+before running the scripts below its best to upgrade first. The image can also be installed on a rpi 2. its best to upgrade the software after the image burn. 
+follow the steps above about the login procedure. 
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+```
+after this do a reboot first. 
+```
+sudo reboot
+```
+
+then you can proceed from the step below
+
+
 #run script staticip
 
 configure your network settings. set the rpi to a static ipaddress (run with sudo!!). this script will write the changes to your primary network interface, so be sure that they are right ;).
