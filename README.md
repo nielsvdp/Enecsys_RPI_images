@@ -29,7 +29,7 @@ to pvoutput.
 https://github.com/omoerbeek/e2pv
 
 #Download link:
-https://mega.co.nz/#!ootwiJZB!4cwoCQckZ_u5OzetpweA4QDXkFWynx1GoazDB9vz_uM
+https://mega.nz/#!SdUGUAxb!oOlY_GypebAayjpPmmfkkbvv1ilCoxDfXezYFwW2MN8
 
 unzip it, and write it your microSD card. Downsized the image so it fit on a 8GB card.
 
