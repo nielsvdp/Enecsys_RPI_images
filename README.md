@@ -129,7 +129,7 @@ needed: how many inverters you have
 ./e2pv_install.sh
 ```
 
-#5.
+#5. isntall the dashboard
 Time to install the latest dashboard (run with sudo!)
 * This process also works for upgrades (it will remove the old files)
 needed: to which directory you want to install (so you can see it in your browser as http://your_rpi_address/directory)
@@ -142,7 +142,15 @@ reboot the rpi for completing the install and automatic starting the cronjob.
 sudo reboot
 ```
 
-#enecsys gateway change
+
+#6. enecsys gateway change
 change the ipadress to your freshly installed rpi ipaddress, leave the port to 5040 and you should see data coming to your pvoutput account. give it about 10 -20 minutes. (need light of course 0; )
 
 http://i.imgur.com/ubp9LMs.jpg
+
+#7. Final step
+reboot the raspberry to confirm all changes. 
+```
+sudo reboot
+```
+After the reboot you can find your dashboard on the url you got from the installer
