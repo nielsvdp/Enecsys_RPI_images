@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Copyright (c) 2015 Jeroen van Marion <jeroen@vanmarion.nl>
+## Copyright (c) 2016 Jeroen van Marion <jeroen@vanmarion.nl>
 ##
 ## Permission to use, copy, modify, and distribute this software for any
 ## purpose with or without fee is hereby granted, provided that the above
@@ -14,15 +14,14 @@
 ## ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ##
-## version	: 1.1
-## date		: april 26 2015
+## version	: 2.0
+## date		: January 24 2016
 ## features	: e2pv installation or update. retreive latest files from master branch. create and or backup current config.
 ## cleanup of files after installation
 ## run download script for e2pv setup
 ## run from home/pi directory as normal user
 
-## updates: fixed some variables that needed to be ignored when creating the basic config
-
+## updated script with latest version from Omoerbeek (may 31 2015)
 
 ## todo: check if crontab exists. if exists, then skip, else create and echto. 
 ## crontab -l | grep -q '/home/pi/enecsys/e2pv.php'  && echo 'entry exists' || echo 'entry does not exist'
@@ -32,6 +31,16 @@
 ## date format ##
 NOW=$(date +"%F")
 NOWT=$(date +"%T")
+echo "Start in /home/pi directory"
+echo "start downloading Latest files Omoerbeek: "
+echo ""
+
+#go the pi home directory first
+echo "Start in the home directory"
+echo ""
+cd /home/pi
+mkdir e2pv_temp
+cd /home/pi/e2pv_temp
 
 
 #get latest files / Credits: Omoerbeek :D
@@ -60,7 +69,7 @@ fi
 cp e2pv-master/config.php e2pv-master/e2pv.php e2pv-master/LICENSE e2pv-master/README.md /home/pi/enecsys
 
 # temp zip will be deleted to keep things clean
-rm -r master.zip e2pv-master/
+rm -r master.zip e2pv-master/ e2pv_temp/
 
 ###### time to run setup
 
@@ -71,12 +80,16 @@ getinfo()
 	read -p "Set your systemid from pvoutput:  " pvsystemid
 	read -p "Set LIFETIME in [0/1] default =1:  " pvlifetime
 	read -p "Send data as DC or AC default=0 (DC/AC) [0/1] :  " pvdcac
+	read -p "Set MySQL database UserName: " mysqldbusername
+	read -p "Set MySQL database Password: " mysqldbpassword
+	read -p "Set Mysql database Name: " mysqldbname
 }
 
 writeinterfacefile()
 {
 cat << EOF > $1
 <?php
+define('VERBOSE', 0);        // 0: be silent, except for errors; 1: be verbose
 define('IDCOUNT', $idcount);
 define('APIKEY', '$pvapikey');
 define('SYSTEMID', '$pvsystemid');
@@ -110,30 +123,47 @@ define('AC', $pvdcac);             // Send DC data or AC (DC * Efficiency)
 
 
 // Optional MySQL defs, uncomment to enable MySQL inserts, see README.md
-//define('MYSQLHOST', 'localhost');
-//define('MYSQLUSER', 'myuser');
-//define('MYSQLPASSWORD', 'mypw');
-//define('MYSQLDB', 'mydbname');
-//define('MYSQLPORT', '3306');
+define('MYSQLHOST', 'localhost');
+define('MYSQLUSER', '$mysqldbusername');
+define('MYSQLPASSWORD', '$mysqldbpassword');
+define('MYSQLDB', '$mysqldbname');
+define('MYSQLPORT', '3306');
 ?>
 EOF
 
 echo ""
 echo "The new settings are stored in '$1' "
 echo ""
+
+# temp zip will be deleted to keep things clean
+rm -r /home/pi/e2pv_temp
+
+echo "for all settings to be working, you need to reboot your raspberry when ready: sudo reboot"
+echo "If you did an upgrade you can find your original config file here: /home/pi/enecsys/config.php /home/pi/enecsys/config.php_original_$NOWT"
+echo "" 
+
 exit 0
+
 }
+
+echo "You can ignore these alerts: rm: cannot remove mycron1 or mycron2: No such file or directory"
+#check if cronjob exists, otherwise create it
+CMD="php /home/pi/enecsys/e2pv.php >> /home/pi/enecsys/e2pv.log"
+JOB="@reboot $CMD"
+TMPC="mycron1"
+grep "$CMD" -q <(crontab -l) || (crontab -l>"$TMPC"; echo "$JOB">>"$TMPC"; crontab "$TMPC")
+rm mycron1
+
+#check if cronjob exists, otherwise create it
+CMD="sudo cp /dev/null /home/pi/enecsys/e2pv.log"
+JOB="0 1 * * * $CMD"
+TMPC="mycron2"
+grep "$CMD" -q <(crontab -l) || (crontab -l>"$TMPC"; echo "$JOB">>"$TMPC"; crontab "$TMPC")
+rm mycron2
 
 file="/home/pi/enecsys/config.php"
 
 clear
-echo "Credits for the script: https://github.com/omoerbeek/e2pv"
-echo "For detailed installation/configuration please check the github link"
-echo "only basic settings, for advanced edit $file_config manually"
-echo "All questions have to be set. there is no check on this"
-echo "If you are updating and dont know your setting anymore you can find them  here: /home/pi/enecsys/config.php /home/pi/enecsys/config.php_original_$NOWT"
-echo "" 
-
 getinfo
 echo ""
 echo "Check if these settings are correct:"
@@ -142,6 +172,10 @@ echo "Your apikey from pvoutput: $pvapikey"
 echo "Your systemid from pvoutput: $pvsystemid"
 echo "LIFETIME setting: $pvlifetime"
 echo "Send data as DC or AC: $pvdcac"
+echo ""
+echo "MySQL Enecsys Database UserName: $mysqldbusername"
+echo "MySQL Enecsys Database Password: $mysqldbpassword "
+echo "MySQL Enecsys Database Name: $mysqldbname "
 echo ""
 
 while true; do

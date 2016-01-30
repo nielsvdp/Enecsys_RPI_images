@@ -14,9 +14,9 @@
 ## ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ##
-## version	: 1.1
+## version	: 2.0
 ## language	: english
-## date		: april 25 2015
+## date		: january 24 2016
 
 
 getinfo()
@@ -62,7 +62,6 @@ if [ ! -f $file ]; then
   echo ""
   exit 1
 fi
-
 clear
 echo "This script is build to change the primary network settings with 3 questions"
 echo ""

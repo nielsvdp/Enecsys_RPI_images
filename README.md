@@ -1,46 +1,41 @@
 # Enecsys_RPI_Images
 is based on the need for a Solar Dashboard to monitor on a local server. to monitor the enecsys inverters 
 
-I created a complete image for the raspberry pi. 
+Got many questions if the install procedure could be simplified without needing advanced knowledge. I hope i did a pretty good job on this
 
 Tweakers topic: 
 http://gathering.tweakers.net/forum/list_messages/1627615/0
 
-i created the manual on the first page for a complete manual installation. but for users who dont have any experience it can be tricky. 
+I created 2 images cause there is a new release on debian OS. 
+Debian Wheezy (+ install scripts separate for current users)
+Debian Jessie (+ install scripts separate for new installs and current Jessie users)
 
-I will create more images, but this is the one that will only get the information from the enecsys gateway and send it straight
-to pvoutput. 
-
-#what does this image have
-- its a raspbian wheezy (16-02-2015)
-- its up to date and upgraded
+#Image: Debian Wheezy:
+- its up to date and upgraded (30-01-2016)
 - gpu memory is set to 16MB
-- overclocked to 800Mhz (no heatsink needed)
-- it has php5 installed for the script to run
-- it has the cronjob already configured to be able to run the script
-  @reboot php /home/pi/enecsys/e2pv.php
-- it has a script installed to be able to easy configure your network (staticip.sh)
-  can be downloaded seperate if you already have an image installed
-- it has the e2pv easy install script installed. i only set it up with the basic requirements for pvoutput
+- overclocked to 900Mhz (no heatsink needed)
+- it has php5, apache2, mysql, phpmyadmin pre installed
 
-* It does NOT contain the settings for the apache webserver or mysql settings. You have to manually install apache en mysql for that and reconfigure the /home/pi/enecys/config.php for that.
+From there you can run the scripts which you can download separate for installing the e2pv script and the dashboard, as well as the other scripts needed to connect everything together
+Download link: 
+* unzip it, and write it to your micro(sd) card (minium 8GB size)
 
--- for more detailed information check the author of the script: 
-https://github.com/omoerbeek/e2pv
+#Download link Wheezy: 
+in progress
 
-#Download link:
-https://mega.nz/#!SdUGUAxb!oOlY_GypebAayjpPmmfkkbvv1ilCoxDfXezYFwW2MN8
+#Download link Jessie:
+in progress
 
 unzip it, and write it your microSD card. Downsized the image so it fit on a 8GB card.
 
 #Installation / Configuration
 
-A raspberry pi B+ 512MB
+A RPI B+ 512MB or RPI 2 1GB
 8gb micro sd card
 
 - unzip it and copy it to your sd card with win32diskmanager or any other tool. (it can take a while).
 - from there on, put the sd in your rpi and start it up.
-- track your rpi over the network to find its ip address (i used Fing (available for Apple/Android)
+- track your rpi over your wifi network to find its ip address (i used Fing (available for Apple/Android)
 
 login through putty (change the ip address with the one you scanned on your network
 http://i.imgur.com/ltiFSpv.jpg
@@ -50,27 +45,52 @@ user: pi
 password: raspberry
 ```
 
-from there on you're in the right directory. 
+#scripts:
+You can download these to your rpi and run them in this order with sudo rights:
+works on both:
+- static_ip.sh 
+- reset_mysql_rootpass.sh
+- create_database.sh
+- e2pv_install.sh
 
-#Do you have a RPI 2 ?
-before running the scripts below its best to upgrade first. The image can also be installed on a rpi 2. its best to upgrade the software after the image burn. 
-follow the steps above about the login procedure. 
+works on Jessie:
+- install_dashboard_jessie.sh
+
+works on Wheezy:
+- install_dashboard_wheezy.sh
+
+For Jessie:
 ```
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
+cd /home/pi
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/static_ip.sh
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/reset_mysql_rootpass.sh
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/create_database.sh
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/e2pv_install.sh
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/install_dashboard_jessie.sh
 ```
-after this do a reboot first. 
+set them to executable
 ```
-sudo reboot
+chmod +x static_ip.sh reset_mysql_rootpass.sh create_database.sh e2pv_install.sh install_dashboard_jessie.sh
 ```
 
-then you can proceed from the step below
+For Wheezy:
+```
+cd /home/pi
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/static_ip.sh
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/reset_mysql_rootpass.sh
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/create_database.sh
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/e2pv_install.sh
+wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/install_dashboard_wheezy.sh
+```
+set them to executable
+```
+chmod +x chmod +x static_ip.sh reset_mysql_rootpass.sh create_database.sh e2pv_install.sh install_dashboard_wheezy.sh
+```
+#Note:
+make sure to run the scripts in the correct order.some scripts has to run with sudo rights, but not all. Copy paste the commands should help you.
 
-
-#run script staticip
-
-configure your network settings. set the rpi to a static ipaddress (run with sudo!!). this script will write the changes to your primary network interface, so be sure that they are right ;).
+#1. run script static_ip.sh
+this script will write the changes to your primary network interface, so be sure that they are right ;).
 
 needed:
 - Your router ipaddress (gateway) - NOT the enecsys gateway!
@@ -80,29 +100,43 @@ needed:
 ```
 sudo ./staticip.sh
 ```
-example: http://i.imgur.com/Mm6Skez.jpg?1
 
-Reboot the RPI to complete the changes and to check if the changes are correctly set after an reboot.
-
-#run script e2pv_install_update
-
-2nd script is the download, installation and configuration of omoerbeek his script to read the enecsys gateway and output the data to pvoutput. this script will only use the basic settings. for more advanced stuff check his github page. 
-
-needed: 
-- pvoutput account
-- pvoutput apikey
-- pvoutput systemid
-
-run the script: (from /home/pi) as normal pi user
+#2. run script reset_mysql_rootpass.sh
+current mysql root password: d@mpDime27
+change this one to one you like and save it. (you need the new passsword in step 3 and save it somewhere save)
 ```
-./e2pv_install_update.sh
+sudo ./reset_mysql_rootpass.sh 
 ```
 
-follow the questions and you're all set. 
+#3. run script create_database.sh
+To be able to log the input of your inverters you need to create a new database for it. This can only be done as root mysql user, so you need the new password from step 2
+Remember to save these credentials, cause you need them later on.
+needed: the changed mysql root password (see step 2)
+needed: databasename (think of one you like, or: enecsys)
+needed: username (think of one you like or: enecsys)
+needed: password (think of one you like)
+```
+sudo ./create_database.sh
+```
 
-example: http://i.imgur.com/tGUUcKK.jpg
+#4. run script e2pv_install.sh (Don't run as sudo!!)
+Time to setup the e2pv script. credits: https://github.com/omoerbeek/e2pv
+Needed: mysql credentials from step 3 
+needed: pvoutput apikey from your account
+needed: pvoutput systemid
+needed: how many inverters you have
+```
+./e2pv_install.sh
+```
 
-
+#5.
+Time to install the latest dashboard (run with sudo!)
+* This process also works for upgrades (it will remove the old files)
+needed: to which directory you want to install (so you can see it in your browser as http://your_rpi_address/directory)
+needed: mysql credentials from step2
+```
+sudo ./install_dashboard_jessie.sh
+```
 reboot the rpi for completing the install and automatic starting the cronjob.
 ```
 sudo reboot
