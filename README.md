@@ -62,11 +62,11 @@ works on Wheezy:
 For Jessie:
 ```
 cd /home/pi
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/static_ip.sh
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/reset_mysql_rootpass.sh
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/create_database.sh
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/e2pv_install.sh
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/install_dashboard_jessie.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/static_ip.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/reset_mysql_rootpass.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/create_database.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/e2pv_install.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/install_dashboard_jessie.sh
 ```
 set them to executable
 ```
@@ -76,11 +76,11 @@ chmod +x static_ip.sh reset_mysql_rootpass.sh create_database.sh e2pv_install.sh
 For Wheezy:
 ```
 cd /home/pi
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/static_ip.sh
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/reset_mysql_rootpass.sh
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/create_database.sh
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/e2pv_install.sh
-wget https://github.com/nlmaca/Enecsys_RPI_images/blob/master/scripts/install_dashboard_wheezy.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/static_ip.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/reset_mysql_rootpass.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/create_database.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/e2pv_install.sh
+wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/install_dashboard_wheezy.sh
 ```
 set them to executable
 ```
@@ -98,7 +98,7 @@ needed:
 - preferable ipaddress of your rpi (needs to be unused in your network), or the one you are using to connect to the pi.
 
 ```
-sudo ./staticip.sh
+sudo ./static_ip.sh
 ```
 
 #2. run script reset_mysql_rootpass.sh
