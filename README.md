@@ -84,7 +84,7 @@ wget https://raw.githubusercontent.com/nlmaca/Enecsys_RPI_images/master/scripts/
 ```
 set them to executable
 ```
-chmod +x chmod +x static_ip.sh reset_mysql_rootpass.sh create_database.sh e2pv_install.sh install_dashboard_wheezy.sh
+chmod +x static_ip.sh reset_mysql_rootpass.sh create_database.sh e2pv_install.sh install_dashboard_wheezy.sh
 ```
 #Note:
 make sure to run the scripts in the correct order.some scripts has to run with sudo rights, but not all. Copy paste the commands should help you.
