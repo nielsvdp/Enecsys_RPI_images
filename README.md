@@ -24,7 +24,7 @@ Download link:
 in progress
 
 #Download link Jessie:
-in progress
+https://mega.nz/#!aJ9FkQrC
 
 unzip it, and write it your microSD card. Downsized the image so it fit on a 8GB card.
 
