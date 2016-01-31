@@ -21,10 +21,10 @@ Download link:
 * unzip it, and write it to your micro(sd) card (minium 8GB size)
 
 #Download link Wheezy: 
-in progress
+https://mega.nz/#!zUthBIzS!kTOGY8VhQJJRXNbNHuMKQYUPCZ6UMpVmOwneMnSStzw
 
 #Download link Jessie:
-https://mega.nz/#!aJ9FkQrC
+https://mega.nz/#!aJ9FkQrC!-VO8iX4iOLG6QQe3D0jBWQkBp0rZGsPMVmHQ6Z52f8A
 
 unzip it, and write it your microSD card. Downsized the image so it fit on a 8GB card.
 
