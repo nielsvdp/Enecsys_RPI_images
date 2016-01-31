@@ -10,7 +10,7 @@ I created 2 images cause there is a new release on debian OS.
 Debian Wheezy (+ install scripts separate for current users)
 Debian Jessie (+ install scripts separate for new installs and current Jessie users)
 
-#Image: Debian Wheezy:
+#Image: Debian Wheezy & Jessie
 - its up to date and upgraded (30-01-2016)
 - gpu memory is set to 16MB
 - overclocked to 900Mhz (no heatsink needed)
