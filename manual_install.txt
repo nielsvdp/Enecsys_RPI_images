@@ -1,0 +1,77 @@
+#### JESSIE ###
+RPI2
+1. Download Jessie or Wheezy image
+
+2. Copy image to SD Card
+
+3. insert SD into RPI and boot
+
+4. Find the ipadress of your RPI in your network
+
+5. Login with SSH (putty) on the RPI
+user: ip / password: raspberry
+
+6. run: sudo raspi-config
+change settings:
+ - Expand filesystem: [enter]
+ - boot options: 
+	B1 Text Console, Require user Login
+ - Overclock:
+	Medium (900 Mhz)
+ - Advanced Options:
+	A3 memory Split: set GPU to 16
+	A0 Update this tool: Yes
+
+7. sudo reboot (to confirm changes)
+
+8. run update & upgrade
+sudo apt-get update
+sudo apt-get upgrade
+
+9.Install apache
+sudo apt-get install apache2 apache2-doc apache2-utils
+sudo apt-get install libapache2-mod-php5 php5 php-pear php5-xcache
+sudo apt-get install php5-mysql
+sudo apt-get install mysql-server mysql-client
+password: d@mpDime27  (copy (ctrl+c) -> right mouse for paste)
+
+11.
+sudo apt-get install phpmyadmin
+select apache2 (spacebar -> tab -> enter)
+Configure database for phpmyadmin with dbconfig-common? no (tab -> enter)
+
+12.
+sudo cp /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
+date
+
+13.
+sudo vi /etc/apache2/apache2.conf
+add line
+ServerName 127.0.0.1
+
+14.
+sudo vi /etc/php5/apache2/php.ini
+adjust line: ;date.timezone 
+to: date.timezone = Europe/Amsterdam
+
+15.
+sudo service apache2 restart
+
+16.
+sudo reboot
+
+url phpmyadmin (http://raspberry_ip/phpmyadmin)
+
+## ---- end of basic image install ----##
+
+17. from here download the scripts to your raspberry
+cd /home/pi/
+static_ip.sh 
+reset_mysql_rootpass.sh
+create_database.sh
+e2pv_install.sh
+install_dashboard_jessie.sh
+
+chmod +x static_ip.sh reset_mysql_rootpass.sh create_database.sh e2pv_install.sh install_dashboard_jessie.sh
+
+

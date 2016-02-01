@@ -10,6 +10,9 @@ I created 2 images cause there is a new release on debian OS.
 Debian Wheezy (+ install scripts separate for current users)
 Debian Jessie (+ install scripts separate for new installs and current Jessie users)
 
+Want to test / run it by yourself? 
+Open the manual_install.txt file. It shows the steps i did to create the images ;)
+
 #Image: Debian Wheezy & Jessie
 - its up to date and upgraded (30-01-2016)
 - gpu memory is set to 16MB
