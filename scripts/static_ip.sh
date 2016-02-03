@@ -62,7 +62,7 @@ if [ ! -f $file ]; then
   echo ""
   exit 1
 fi
-clear
+
 echo "This script is build to change the primary network settings with 3 questions"
 echo ""
 

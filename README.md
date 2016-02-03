@@ -132,14 +132,22 @@ needed: how many inverters you have
 ./e2pv_install.sh
 ```
 
-#5. isntall the dashboard
+#5. install the dashboard
 Time to install the latest dashboard (run with sudo!)
 * This process also works for upgrades (it will remove the old files)
 needed: to which directory you want to install (so you can see it in your browser as http://your_rpi_address/directory)
 needed: mysql credentials from step2
+
+Run installer for Jessie:
 ```
 sudo ./install_dashboard_jessie.sh
 ```
+or run installer for Wheezy:
+
+```
+sudo ./install_dashboard_wheezy.sh
+```
+
 reboot the rpi for completing the install and automatic starting the cronjob.
 ```
 sudo reboot

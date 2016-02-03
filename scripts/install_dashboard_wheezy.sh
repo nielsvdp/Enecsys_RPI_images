@@ -14,8 +14,8 @@
 ## ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ##
-## version	: 2.3
-## date		: january 26 2016
+## version	: 2.4
+## date		: february 3 2016
 ## features	: enecsys dashboard download and install
 ## cleanup of files after installation
 ## run download script for dashboard install
@@ -26,8 +26,7 @@
 ###########################################################################
 
 ## date format ##
-NOW=$(date +"%F")
-NOWT=$(date +"%T")
+today=$(date '+%d_%m_%Y_%H-%M-%S')
 
 echo "Start in /home/pi directory"
 echo "start downloading Enecsys Dashboard latest version from Github: "
@@ -55,6 +54,23 @@ getinfo()
 
 writeinterfacefile()
 {
+
+# if config file exists, create a backup to the home/pi directory
+file_config="/var/www/$webdirectory/inc/general_conf.inc.php"
+if [ -e "$file_config" ]; then
+	echo ""
+    echo "Config File exists. Creating copy of it to your home directory"
+	echo ""
+	cp /var/www/$webdirectory/inc/general_conf.inc.php /home/pi/BACKUP_general_conf.inc.php_$today
+	chown pi:pi /home/pi/BACKUP_general_conf.inc.php_$today
+	chmod 644 /home/pi/BACKUP_general_conf.inc.php_$today
+else 
+	echo ""
+    echo "general_conf.inc.php does not exist. a new one will be created based on next questions"
+	echo ""
+fi 
+
+
 #check if directory exists, else create it
 if [ -d "/var/www/$webdirectory" ]; then
 	echo "Directory already exists, old files will be removed and replaced with new ones"
