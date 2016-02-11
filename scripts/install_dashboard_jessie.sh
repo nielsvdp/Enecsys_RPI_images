@@ -60,7 +60,7 @@ if [ -e "$file_config" ]; then
 	echo ""
     echo "Config File exists. Creating copy of it to your home directory"
 	echo ""
-	cp /var/www/html$webdirectory/inc/general_conf.inc.php /home/pi/BACKUP_general_conf.inc.php_$today
+	cp /var/www/html/$webdirectory/inc/general_conf.inc.php /home/pi/BACKUP_general_conf.inc.php_$today
 	chown pi:pi /home/pi/BACKUP_general_conf.inc.php_$today
 	chmod 644 /home/pi/BACKUP_general_conf.inc.php_$today
 else 
