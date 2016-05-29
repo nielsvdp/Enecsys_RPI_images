@@ -27,23 +27,17 @@
 
 ## date format ##
 today=$(date '+%d_%m_%Y_%H-%M-%S')
-getinfo()
 
-{
-	read -p "set your username (e.g pi): " username
-
-}
-
-echo "Start in /home/$username directory"
+echo "Start in /home/$USER directory"
 echo "start downloading Enecsys Dashboard latest version from Github: "
 echo ""
 
 #go the user home directory first
 echo "Start in the home directory"
 echo ""
-cd /home/$username
+cd /home/$USER
 mkdir dash_temp
-cd /home/$username/dash_temp
+cd /home/$USER/dash_temp
 
 #get latest files
 wget https://github.com/nlmaca/Enecsys_Dashboard/archive/master.zip
@@ -66,9 +60,9 @@ if [ -e "$file_config" ]; then
 	echo ""
     echo "Config File exists. Creating copy of it to your home directory"
 	echo ""
-	cp /var/www/html/$webdirectory/inc/general_conf.inc.php /home/$username/BACKUP_general_conf.inc.php_$today
-	chown $username:$username /home/$username/BACKUP_general_conf.inc.php_$today
-	chmod 644 /home/$username/BACKUP_general_conf.inc.php_$today
+	cp /var/www/html/$webdirectory/inc/general_conf.inc.php /home/$USER/BACKUP_general_conf.inc.php_$today
+	chown $USER:$USER /home/$USER/BACKUP_general_conf.inc.php_$today
+	chmod 644 /home/$USER/BACKUP_general_conf.inc.php_$today
 else 
 	echo ""
     echo "general_conf.inc.php does not exist. a new one will be created based on next questions"
@@ -80,20 +74,20 @@ fi
 if [ -d "/var/www/html/$webdirectory" ]; then
 	echo "Directory already exists, old files will be removed and replaced with new ones"
 	sudo rm -R /var/www/html/$webdirectory/*
-	cd /home/$username/dash_temp/Enecsys_Dashboard-master
+	cd /home/$USER/dash_temp/Enecsys_Dashboard-master
 	sudo cp -R * /var/www/html/$webdirectory
 	sudo chmod 777 /var/www/html/$webdirectory/inc/general_conf.inc.php
 	echo ""
 else 	
 	sudo mkdir /var/www/html/$webdirectory
-	cd /home/$username/dash_temp/Enecsys_Dashboard-master
+	cd /home/$USER/dash_temp/Enecsys_Dashboard-master
 	sudo cp -R * /var/www/html/$webdirectory
 	sudo chmod 777 /var/www/html/$webdirectory/inc/general_conf.inc.php
 	echo ""
 fi
 
 # temp zip will be deleted to keep things clean
-rm -r /home/$username/dash_temp
+rm -r /home/$USER/dash_temp
 
 echo "for all settings to be working, you need to reboot your raspberry when ready: sudo reboot"
 echo ""
